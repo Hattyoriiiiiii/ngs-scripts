@@ -30,3 +30,8 @@ RUN R -e "install.packages(c('data.table', 'dplyr', 'tidyr', 'stringr', 'tidyver
 RUN R -e "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'), repos='https://cran.ism.ac.jp/')" && \
     R -e "remotes::install_github('IRkernel/IRkernel')" && \
     R -e "IRkernel::installspec()"
+
+# csaw
+RUN R -e "BiocManager::install(c('csaw', 'chipseqDBData', 'edgeR', 'Rsubread', 'chromVAR', 'motifmatchr', 'SummarizedExperiment', 'BiocParallel'))"
+
+RUN R -e "BiocManager::install(c('GO.db', 'reactome.db', 'org.Mm.eg.db', 'TxDb.Mmusculus.UCSC.mm10.knownGene', 'JASPAR2020'))"
