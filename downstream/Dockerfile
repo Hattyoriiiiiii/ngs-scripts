@@ -35,3 +35,5 @@ RUN R -e "install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ'
 RUN R -e "BiocManager::install(c('csaw', 'chipseqDBData', 'edgeR', 'Rsubread', 'chromVAR', 'motifmatchr', 'SummarizedExperiment', 'BiocParallel'))"
 
 RUN R -e "BiocManager::install(c('GO.db', 'reactome.db', 'org.Mm.eg.db', 'TxDb.Mmusculus.UCSC.mm10.knownGene', 'JASPAR2020'))"
+
+# ggpubr, ATACseqQC
