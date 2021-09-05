@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-printf "\n <<< Type project name (e.g. ChIP_stra8) >>> \n\n"
-read projname
-
 ########## <<< functions >>> ##########
 
 function mkproj()
@@ -17,11 +14,16 @@ function mkproj()
 
 
 ########## <<< config >>> ##########
+
 DIR=(data log others summary scripts 01_qc/{before/multiqc_before,after/multiqc_after} 02_trim 03_align 04_filtering 05_peaks notebooks/{data,figures})
 LINK=(01_qc/before/multiqc_before 01_qc/after/multiqc_after others scripts summary log notebooks)
 
-
 ########## Making directories ##########
+
+printf "\n <<< Type project name (e.g. ChIP_Stra8) >>> \n\n"
+read projname
+
+mkproj ~/project; cd ~/project
 
 if [ ! -d ${projname} ]
 then
@@ -52,7 +54,7 @@ for path in "${LINK[@]}"; do
     ln -s ../${path} ${basename}
 done
 
-cd ~/PROJECT_REPORTS; ln -s ~/project/${projname}/REPORTS_${projname} REPORTS_${projname}
+mkproj ~/PROJECT_REPORTS; cd ~/PROJECT_REPORTS; ln -s ~/project/${projname}/REPORTS_${projname} REPORTS_${projname}
 
 printf \
     """
