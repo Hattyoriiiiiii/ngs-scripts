@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ########## <<< functions >>> ##########
 
 function mkproj()
 {
     if [ ! -d "$@"} ]; then
-        printf "\n \"${@}\" ディレクトリを作成します \n"
+        printf "\n Making a directory named \"${@}\" \n"
         mkdir -p "$@"
     else
-        printf "\n \"${@}\" ディレクトリは存在します \n"
+        printf "\n There is already a directory named \"${@}\" \n"
     fi
 }
 
@@ -56,36 +56,42 @@ done
 
 mkproj ~/PROJECT_REPORTS; cd ~/PROJECT_REPORTS; ln -s ~/project/${projname}/REPORTS_${projname} REPORTS_${projname}
 
-printf \
-    """
-    ${projname}
-    ├── 01_qc
-    │   ├── after
-    │   │   └── multiqc_after
-    │   └── before
-    │       └── multiqc_before
-    ├── 02_trim
-    ├── 03_align
-    ├── 04_filtering
-    ├── 05_peaks
-    ├── REPORTS_${projname}
-    │   ├── log -> ../log
-    │   ├── multiqc_after -> ../01_qc/after/multiqc_after
-    │   ├── multiqc_before -> ../01_qc/before/multiqc_before
-    │   ├── notebooks -> ../notebooks
-    │   ├── others -> ../others
-    │   ├── scripts -> ../scripts
-    │   └── summary -> ../summary
-    ├── data
-    ├── log
-    ├── notebooks
-    │   ├── data
-    │   └── figures
-    ├── others
-    │   ├── rename.csv
-    │   ├── rename.sh
-    │   └── sample.txt
-    ├── scripts
-    └── summary
-    """
+if type tree
+then
+    tree ~/project/${projname}
+else
+    printf \
+        """
+        ${projname}
+        ├── 01_qc
+        │   ├── after
+        │   │   └── multiqc_after
+        │   └── before
+        │       └── multiqc_before
+        ├── 02_trim
+        ├── 03_align
+        ├── 04_filtering
+        ├── 05_peaks
+        ├── REPORTS_${projname}
+        │   ├── log -> ../log
+        │   ├── multiqc_after -> ../01_qc/after/multiqc_after
+        │   ├── multiqc_before -> ../01_qc/before/multiqc_before
+        │   ├── notebooks -> ../notebooks
+        │   ├── others -> ../others
+        │   ├── scripts -> ../scripts
+        │   └── summary -> ../summary
+        ├── data
+        ├── log
+        ├── notebooks
+        │   ├── data
+        │   └── figures
+        ├── others
+        │   ├── rename.csv
+        │   ├── rename.sh
+        │   └── sample.txt
+        ├── scripts
+        └── summary
+        """
+fi
+
 echo
